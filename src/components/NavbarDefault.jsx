@@ -1,28 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom"; 
 import axios from 'axios';
+import quora from '../assets/Quora.jpg';
+import { Icons, Post, Home, Spaces } from './Icons';
+import { useUser } from './Utils/UserProvider';
+import {Navbar,Typography,Input,Tooltip,} from "@material-tailwind/react";
+import CreatePost from './Post/CreatePost';
+import { PROJECT_ID } from './Utils/constant';
+import { Notification } from './Notification';
 import { ProfileMenu } from './ProfileMenu';
 import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
-import { Notification } from './Notification';
-import CreateSpaceComponent from './CreateSpace';
-import { Icons, Post, Home, Spaces } from './Icons';
-import { useUser } from './Utils/UserProvider';
-import quora from '../assets/Quora.jpg';
-import {
-    Navbar,
-    Typography,
-    Input,
-    Tooltip,
-} from "@material-tailwind/react";
-import CreatePost from './Post/CreatePost';
-
 
 const NavbarDefault = () => {
     const { theme } = useUser();
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    
     const [openNav, setOpenNav] = useState(false);
     const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -55,11 +48,11 @@ const NavbarDefault = () => {
             try {
                 const response = await axios.get(`https://academics.newtonschool.co/api/v1/quora/post?search={"content":"${searchTerm}"}`, {
                     headers: {
-                        'projectID': 'tpibj7ie8i1w'
+                        'projectID': PROJECT_ID
                     }
                 });
                 setSearchResults(response.data.data);
-                console.log(response.data.data)
+                console.log(response.data.data);
             } catch (error) {
                 console.error("Error fetching search results:", error);
             }
@@ -68,36 +61,32 @@ const NavbarDefault = () => {
         }
     };
 
-    const nav = () => {
-        navigate('/ComingSoon');
-    };
-
     return (
         <>
-            <Navbar className="max-w-screen-xl lg:max-w-full fixed top-0 left-0 right-0 z-20 h-16 xs:flex" style={postCardStyle}>
-                <div className="lg:mx-auto flex-wrap justify-center text-gray-900 mb-4 lg:ml-64 lg:gap-2 items-center hidden lg:block">
+            <Navbar className="max-w-screen-xl lg:max-w-full fixed z-10 h-12 xs:flex" style={postCardStyle}>
+                <div className="flex-wrap justify-center text-gray-900  lg:mx-24 lg:gap-2 items-center hidden lg:flex">
                     <div className="relative flex w-full md:w-max xs:flex-wrap justify-between">
-                        <Typography as="a" href="#" className="mr-4 cursor-pointer py-1.5 font-medium">
-                            <img src={quora} className="w-40 h-8 cursor-pointer xs:w-20" onClick={() => navigate('/home')} alt="Quora" />
+                        <Typography as="a" href="#" className="mr-6 cursor-pointer font-medium">
+                            <img src={quora} className="w-40 h-6 cursor-pointer xs:w-20" onClick={() => navigate('/home')} alt="Quora" />
                         </Typography>
-                        <Typography as="a" href="#" className="mr-5 cursor-pointer py-1.5 font-medium">
+                        <Typography as="a" href="#" className="mr-5 cursor-pointer font-medium">
                             <Link to="/home">
                                 <Tooltip title="Home">
                                     <Home className="w-8 h-8 md:w-6 md:h-6" />
                                 </Tooltip>
                             </Link>
                         </Typography>
-                        <Typography as="a" href="#" className="mr-5 cursor-pointer py-1.5 font-medium">
+                        <Typography as="a" href="#" className="mr-5 cursor-pointer  font-medium">
                             <Link to="/ComingSoon">
                                 <Post className="w-7 h-7 md:w-6 md:h-6" />
                             </Link>
                         </Typography>
-                        <Typography as="a" href="#" className="mr-5 cursor-pointer py-1.5 font-medium">
+                        <Typography as="a" href="#" className="mr-5 cursor-pointer  font-medium">
                             <Link to="/Answers">
                                 <Icons className="w-7 h-7 md:w-6 md:h-6" />
                             </Link>
                         </Typography>
-                        <Typography as="a" href="#" className="mr-5 cursor-pointer py-1.5 font-medium">
+                        <Typography as="a" href="#" className="mr-5 cursor-pointer font-medium">
                             <Link to="/ComingSoon">
                                 <Spaces className="w-7 h-7 md:w-6 md:h-6" />
                             </Link>
@@ -109,7 +98,7 @@ const NavbarDefault = () => {
                         </Link>
                         <Input
                             type="search"
-                            placeholder="Search Quora(content based)"
+                            placeholder="Search Quora"
                             value={query}
                             onChange={handleSearch}
                             containerProps={{
@@ -125,7 +114,7 @@ const NavbarDefault = () => {
                                 <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm10.45 2.95L16 16l4.95 4.95Z" className="icon_svg-stroke" stroke="#666" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"></path>
                             </svg>
                         </div>
-                        <Typography className="ml-3 h-10 w-28 cursor-pointer py-1.5 font-medium text-md px-1.5 border border-[#575757] rounded-full flex items-center">
+                        <Typography className="ml-3 h-10 w-28 cursor-pointer py-1.5 font-medium text-md  border border-[#575757] rounded-full flex items-center">
                             <Tooltip title="Try Quora">
                                 <Subscription />
                             </Tooltip>
@@ -143,7 +132,7 @@ const NavbarDefault = () => {
                         </Typography>
                     </div>
                     {query && searchResults.length > 0 && (
-                        <div className="top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll z-20">
+                        <div className="absolute top-12 bg-white shadow-lg rounded-lg mt-2 p-4 max-h-72 overflow-scroll z-20">
                             {searchResults.map((result, index) => (
                                 <div key={index} className="p-2 border-b last:border-b-0">
                                     <h2 className='font-bold'>{result?.title}</h2>

@@ -8,9 +8,9 @@ import {
     div,
     Typography,
     List,
-    // div,
     ListItemPrefix,
 } from "@material-tailwind/react";
+import { PROJECT_ID } from './Utils/constant';
 
 const Leftbar = () => {
     const { theme } = useUser();
@@ -29,7 +29,7 @@ const Leftbar = () => {
             const res = await axios.get('https://academics.newtonschool.co/api/v1/quora/channel/?limit=5', {
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'projectID': 'tpibj7ie8i1w',
+                    'projectID': PROJECT_ID,
                 }
             });
             const data = res.data;
@@ -55,13 +55,13 @@ const Leftbar = () => {
         };
     }, []);
 
-    if (windowWidth < 1024) { // Adjust this value based on the Tailwind CSS breakpoint you want to use
+    if (windowWidth < 1024) { 
         return null;
     }
 
     return (
         <>
-            <div className="h-[calc(100vh-10rem)] max-w-[10rem] fixed top-20 ml-72" style={postCardStyle}>
+            <div className="h-[calc(100vh-10rem)] max-w-[10rem] fixed top-20 ml-32" style={postCardStyle}>
                 <Typography variant="h5" p-1 className='text-black'>  
                     <CreateSpace />
                 </Typography>

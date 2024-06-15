@@ -1,5 +1,4 @@
 import React from "react";
-import quora from  '../assets/Quora.jpg';
 
 import {
   div,
@@ -19,9 +18,9 @@ const Subscription = () => {
 
   return (
     <>
-    
+
       <div onClick={handleOpen} className="p-2">Try Quora+</div>
-    <Dialog size="xs" open={open} handler={handleOpen} > 
+      <Dialog size="xs" open={open} handler={handleOpen} >
         <DialogHeader className="">
           <div>
             <Typography variant="h5" color="blue-gray">
@@ -126,9 +125,9 @@ const Subscription = () => {
           <div variant="outlined" size="sm">
             Learn More
           </div>
-        </DialogFooter>                
+        </DialogFooter>
       </Dialog>
-      
+
     </>
   );
 }
