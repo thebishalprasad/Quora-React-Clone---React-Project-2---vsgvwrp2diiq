@@ -5,7 +5,7 @@ import pen from '../assets/Pen.jpg'
 import edit from '../assets/Edit.jpg'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import GetComments from './GetComments';
+import GetComments from '../GetComments';
 
 const Spaces = () => {
   const navigate = useNavigate();

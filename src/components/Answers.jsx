@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
 import { useUser } from './Utils/UserProvider';
 import 'react-toastify/dist/ReactToastify.css';
-import NavbarDefault from './NavbarDefault';
+import NavbarDefault from './Navbar/NavbarDefault';
 import { PROJECT_ID } from './Utils/constant';
 
 const Answers = () => {
@@ -28,7 +28,6 @@ const Answers = () => {
     const postCardStyle = {
       backgroundColor: theme === 'light' ? 'white' : 'gray',
       color: theme === 'light' ? 'black' : 'white',
-      // borderColor: theme === 'light' ? '#ddd' : '#444'
     };
   
     const fetchPosts = async () => {

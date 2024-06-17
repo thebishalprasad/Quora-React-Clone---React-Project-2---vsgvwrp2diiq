@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, Navigate } from "react-router-dom"; 
 import axios from 'axios';
-import quora from '../assets/Quora.jpg';
-import { Icons, Post, Home, Spaces } from './Icons';
-import { useUser } from './Utils/UserProvider';
+import quora from '../../assets/Quora.jpg';
+import { Icons, Post, Home, Spaces } from '../Icons';
+import { useUser } from '../Utils/UserProvider';
 import {Navbar,Typography,Input,Tooltip,} from "@material-tailwind/react";
-import CreatePost from './Post/CreatePost';
-import { PROJECT_ID } from './Utils/constant';
+import CreatePost from '../Post/CreatePost';
+import { PROJECT_ID } from '../Utils/constant';
 import { Notification } from './Notification';
 import { ProfileMenu } from './ProfileMenu';
 import LanguageMenu from './LanguageMenu';
@@ -81,7 +81,7 @@ const NavbarDefault = () => {
                                 <Post className="w-7 h-7 md:w-6 md:h-6" />
                             </Link>
                         </Typography>
-                        <Typography as="a" href="#" className="mr-5 cursor-pointer  font-medium">
+                        <Typography as="a" href="#" className="mr-5 cursor-pointer font-medium">
                             <Link to="/Answers">
                                 <Icons className="w-7 h-7 md:w-6 md:h-6" />
                             </Link>
@@ -91,20 +91,20 @@ const NavbarDefault = () => {
                                 <Spaces className="w-7 h-7 md:w-6 md:h-6" />
                             </Link>
                         </Typography>
-                        <Link to="/ComingSoon">
-                            <Typography as="span" className="mr-5 cursor-pointer font-medium">
+                        <Typography as="a" href="#" className="mr-5 cursor-pointer font-medium">
+                            <Link to="/ComingSoon">
                                 <Notification className="w-7 h-7 md:w-6 md:h-6" />
-                            </Typography>
-                        </Link>
+                            </Link>
+                        </Typography>
                         <Input
                             type="search"
                             placeholder="Search Quora"
                             value={query}
                             onChange={handleSearch}
                             containerProps={{
-                                className: "lg:w-[280px]",
+                                className: "lg:w-[300px] mr-2",
                             }}
-                            className="!border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
+                            className="!border-t-blue-gray-300 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
                             labelProps={{
                                 className: "before:content-none after:content-none",
                             }}
@@ -114,7 +114,7 @@ const NavbarDefault = () => {
                                 <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm10.45 2.95L16 16l4.95 4.95Z" className="icon_svg-stroke" stroke="#666" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"></path>
                             </svg>
                         </div>
-                        <Typography className="ml-3 h-10 w-28 cursor-pointer py-1.5 font-medium text-md  border border-[#575757] rounded-full flex items-center">
+                        <Typography className="ml-3 h-10 w-28 cursor-pointer font-medium text-md  border border-[#575757] rounded-full flex items-center">
                             <Tooltip title="Try Quora">
                                 <Subscription />
                             </Tooltip>

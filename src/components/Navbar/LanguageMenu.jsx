@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import globe from  '../assets/Globe.jpg';
+import globe from  '../../assets/Globe.jpg';
 import {
     Menu,
     MenuHandler,
@@ -8,7 +8,7 @@ import {
     Avatar,
     div,
   } from "@material-tailwind/react";
-import { Globe } from './Icons';
+import { Globe } from '../Icons';
   
 
 const LanguageMenu = () => {

@@ -1,14 +1,6 @@
 import React from "react";
-import bell from  '../assets/Bell.jpg';
-import {
-  h1,
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-  Typography,
-} from "@material-tailwind/react";
-import { Notify } from "./Icons";
+import {h1,Dialog,DialogHeader,DialogBody,DialogFooter,Typography} from "@material-tailwind/react";
+import { Notify } from "../Icons";
  
 export function Notification() {
   const [open, setOpen] = React.useState(false);
@@ -17,8 +9,7 @@ export function Notification() {
  
   return (
     <>
-      <h1 className="lg:pt-2 lg:pr-2"><Notify/></h1>
-      
+      <h1 className="lg:pr-2"><Notify/></h1>
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>
           <Typography variant="h5" color="blue-gray">

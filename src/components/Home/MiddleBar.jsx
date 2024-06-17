@@ -2,21 +2,19 @@ import React, { useEffect, useState } from 'react';
 import Avatar from 'react-avatar';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import GetComments from './GetComments';
-import { useUser } from './Utils/UserProvider';
+import GetComments from '../GetComments';
+import { useUser } from '../Utils/UserProvider';
 import 'react-toastify/dist/ReactToastify.css';
-import { Ask, Answer, PostImage } from './Icons';
-import AddPost from './Post/AddPost';
-import { PROJECT_ID } from './Utils/constant';
-import CreatePost from './Post/CreatePost';
+import { Ask, Answer, PostImage } from '../Icons';
+import AddPost from '../Post/AddPost';
+import { PROJECT_ID } from '../Utils/constant';
+import CreatePost from '../Post/CreatePost';
 
-
-const Rightbar = () => {
+const MiddleBar = () => {
   const { theme } = useUser();
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
-  const [following, setFollowing] = useState({});
-  
+  const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
 
   const colour = {
     backgroundColor: theme === 'light' ? 'white' : 'black',
@@ -49,7 +47,6 @@ const Rightbar = () => {
     }
   };
 
-
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -58,19 +55,18 @@ const Rightbar = () => {
     // navigate(`/question/${postId}`);
   };
 
-
   return (
     <>
-      <div className='mx-auto '>
+      <div className='ml-72'>
         <div className='mt-2.5 rounded-sm md:left-96'>
-          <div className='border border-spacing-1 mt-20 pt-2 xl:w-[38rem] lg:w-[30rem] md:w-[26rem] sm:w-[18rem] w-full' style={colour}>
-            <div className="relative flex text-gray-700 bg-clip-border rounded-sm " >
+          <div className='border border-spacing-1 mt-20 pt-2 ' style={colour}>
+            <div className="relative flex text-gray-700 bg-clip-border rounded-sm ">
               <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
               <input
                 placeholder='What do you want to ask or share?'
                 className='p-1 ml-6 border border-spacing-1 rounded-full w-full mr-4'
                 style={inputStyle}
-                // onChange={<Answer/>}
+                onClick={() => setIsCreatePostOpen(true)}
               />
             </div>
             <div className='flex justify-around p-2 xs:gap-5'>
@@ -78,12 +74,12 @@ const Rightbar = () => {
                 <Ask />
                 <h1 className='flex items-center'><CreatePost /></h1>
               </div>
-              <h1 className=''>|</h1>
+
               <div className='flex items-center'>
                 <Answer />
                 <h1 className='' onClick={() => navigate('/Answers')}>Answer</h1>
               </div>
-              <h1 className=''>|</h1>
+
               <div className='flex items-center mr-6'>
                 <PostImage />
                 <div className='' ><AddPost /></div>
@@ -94,7 +90,7 @@ const Rightbar = () => {
             {posts.map((post, index) => {
               const authorInitial = post.author?.name ? post.author?.name.charAt(0).toUpperCase() : '?';
               return (
-                <div className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm xl:w-[38rem] lg:w-[30rem] md:w-[26rem] sm:w-[22rem] w-full" key={index} style={postCardStyle}>
+                <div className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm lg:w-52 md:w-[26rem] sm:w-[22rem] xl:w-[38rem]" key={index} style={postCardStyle}>
                   <div className='flex items-center p-2'>
                     {post.channel?.image ? (
                       <img className="w-8 h-8 rounded-full" src={post.channel?.image} />
@@ -122,15 +118,16 @@ const Rightbar = () => {
                   ) : (
                     ""
                   )}
-                  <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount}  postTitle={post?.title} postContent={post?.content} postImage={post.images[0]} />
+                  <GetComments postId={post?._id} likeCount={post?.likeCount} commentCount={post?.commentCount} postTitle={post?.title} postContent={post?.content} postImage={post.images[0]} />
                 </div>
               )
             })}
           </div>
         </div>
       </div>
+      {isCreatePostOpen && <CreatePost />}
     </>
   );
 };
 
-export default Rightbar;
+export default MiddleBar;

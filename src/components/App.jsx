@@ -1,7 +1,7 @@
 import "../styles/App.css";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom"
 import Home from "./Home/Home";
-import { Notification } from "./Notification";
+import { Notification } from "./Navbar/Notification";
 import ComingSoon from "./Common/ComingSoon";
 import Answers from "./Answers";
 import Login from "./Authentication/Login";

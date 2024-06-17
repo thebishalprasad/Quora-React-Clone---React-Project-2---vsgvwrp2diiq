@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useUser } from './Utils/UserProvider';
 import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogHeader, DialogBody, Input, Textarea } from "@material-tailwind/react";
+import { PROJECT_ID } from './Utils/constant';
 
 const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }) => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
   const token = localStorage.getItem('token');
   const headers = {
     'Authorization': `Bearer ${token}`,
-    'projectID': 'tpibj7ie8i1w'
+    'projectID': PROJECT_ID
   };
 
   const fetchData = async () => {
@@ -125,7 +126,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
         {
           headers: {
             'Authorization': `Bearer ${token}`,
-            'projectID': 'tpibj7ie8i1w',
+            'projectID': PROJECT_ID,
             'Content-Type': 'multipart/form-data'
           }
         }
@@ -147,7 +148,7 @@ const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }
         {
           headers: {
             'Authorization': `Bearer ${token}`,
-            'projectID': 'tpibj7ie8i1w'
+            'projectID': PROJECT_ID
           }
         }
       );

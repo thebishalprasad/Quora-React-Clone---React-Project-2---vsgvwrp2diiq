@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Dialog, Card, CardBody, CardFooter, Typography, Input } from '@material-tailwind/react';
 import { toast } from 'react-toastify';
+import { PROJECT_ID } from '../Utils/constant';
 
 export default function CreateSpaceComponent() {
   const [open, setOpen] = useState(false);
@@ -22,7 +23,7 @@ export default function CreateSpaceComponent() {
     await axios.post('https://academics.newtonschool.co/api/v1/quora/channel/', data, {
       headers: {
         'Authorization': `Bearer ${token}`,
-        'projectID': 'tpibj7ie8i1w',
+        'projectID': PROJECT_ID,
         'Content-Type': 'multipart/form-data'
       }
     })
@@ -48,7 +49,7 @@ export default function CreateSpaceComponent() {
         handler={handleOpen}
         className="bg-transparent shadow-none"
       >
-        <Card className="mx-auto w-full max-w-[24rem]">
+        <Card className="w-full max-w-[24rem]">
           <CardBody className="flex flex-col gap-4">
             <Typography variant="h4" color="blue-gray">
               Create a Space
