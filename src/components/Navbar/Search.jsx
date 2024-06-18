@@ -32,15 +32,15 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
     };
 
     return (
-        <div className="" style={searchBoxStyle}>
-            <div className='flex items-center border border-[#DEE0E1] lg:h-9 w-60 lg:w-96 rounded-md gap-2 '>
-                <div className='flex gap-1'>
+        <div style={searchBoxStyle}>
+            <div className='flex items-center px-2 border border-[#DEE0E1] h-5 lg:h-8  w-60 lg:w-96 rounded-md '>
+                <div className='flex gap-1 ml-2 items-center'>
                     <IoIosSearch className='text-gray-600 h-5 w-5 cursor-pointer' />
                     <input
                         type='search'
                         id='searchInput'
                         placeholder='Search Quora'
-                        className='bg-transparent focus:outline-none text-gray-600 font-light text-base lg:text-base'
+                        className='bg-transparent focus:outline-none lg:w-[320px] text-gray-600 font-light text-base lg:text-base'
                         value={searchQuery}
                         onChange={handleSearch}
                     />

@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
 import { useUser } from './Utils/UserProvider';
 import 'react-toastify/dist/ReactToastify.css';
-import NavbarDefault from './Navbar/Navbar';
 import { PROJECT_ID } from './Utils/Constant';
+import Navbar from './Navbar/Navbar';
 
 const Answers = () => {
   
@@ -53,13 +53,13 @@ const Answers = () => {
   
     return (
       <>
-      <NavbarDefault/>
+      <Navbar/>
         <div className='' style={colour}>
-            <div className='flex items-center flex-col mt-20'>
+            <div className='flex items-center flex-col'>
               {posts.map((post, index) => {
                 const authorInitial = post.author?.name ? post.author?.name.charAt(0).toUpperCase() : '';
                 return (
-                  <div className="relative flex flex-col iem mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl xl:w-[40rem] lg:w-[40rem] md:w-[26rem] w-full" key={index} style={postCardStyle}>
+                  <div className="relative flex flex-col iem mt-14 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl xl:w-[40rem] lg:w-[40rem] md:w-[26rem] w-full" key={index} style={postCardStyle}>
                     <div className='flex items-center p-2'>
                       {post.channel?.image ? (
                         <img className="w-8 h-8 rounded-full" src={post.channel?.image} />
