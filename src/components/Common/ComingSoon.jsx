@@ -1,6 +1,6 @@
 import React from 'react'
 import Maintenance from '../../assets/maintenance.png';
-import NavbarDefault from '../Navbar/NavbarDefault';
+import NavbarDefault from '../Navbar/Navbar';
 
 const ComingSoon = () => {
   return (

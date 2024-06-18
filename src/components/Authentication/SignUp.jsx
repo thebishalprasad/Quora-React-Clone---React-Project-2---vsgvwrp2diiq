@@ -12,7 +12,7 @@ import {
     Typography,
     Input
 } from "@material-tailwind/react";
-import { APP_TYPE, PROJECT_ID } from "../Utils/constant";
+import { APP_TYPE, PROJECT_ID } from "../Utils/Constant";
 
 const SignUp = () => {
     const navigate = useNavigate();

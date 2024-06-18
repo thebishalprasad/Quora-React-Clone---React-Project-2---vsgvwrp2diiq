@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import signUpBg from '../../assets/SignUpBg.jpg';
 import googleLogo from '../../assets/google.jpeg';
 import facebookLogo from '../../assets/facebook.jpeg';
-import { APP_TYPE, PROJECT_ID } from '../Utils/constant';
+import { APP_TYPE, PROJECT_ID } from '../Utils/Constant';
 import SignUp from './SignUp';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';

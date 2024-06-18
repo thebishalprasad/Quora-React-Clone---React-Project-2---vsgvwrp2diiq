@@ -9,7 +9,7 @@ import {
   TabPanel,
   Dialog, DialogHeader, Input, Textarea
 } from "@material-tailwind/react";
-import { PROJECT_ID } from "../Utils/constant";
+import { PROJECT_ID } from "../Utils/Constant";
 export default function CreatePost() {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
@@ -36,7 +36,6 @@ export default function CreatePost() {
         }
       );
       toast.success('Post created successfully');
-      // console.log(response);
       setShow(false);
       window.location.reload();
     } catch (error) {
@@ -169,7 +168,7 @@ export default function CreatePost() {
   ];
   return (
     <div>
-      <h1 onClick={openModal}>Add Question</h1>
+      <h1 onClick={openModal}>Ask</h1>
       <Dialog open={show} handler={closeModal} size="sm">
         <DialogHeader>
           <Tabs value="Add Question" >

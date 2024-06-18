@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import { Dialog, DialogHeader, DialogBody, DialogFooter, h1, Input, Textarea } from "@material-tailwind/react";
 import {Tabs,TabsHeader,TabsBody,Tab,TabPanel,} from "@material-tailwind/react";
-import { PROJECT_ID } from "../Utils/constant";
+import { PROJECT_ID } from "../Utils/Constant";
 
 export default function AddPost() {
   const [show, setShow] = useState(false);

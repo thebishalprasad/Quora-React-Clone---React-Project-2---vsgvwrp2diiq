@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { useUser } from './Utils/UserProvider';
 import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogHeader, DialogBody, Input, Textarea } from "@material-tailwind/react";
-import { PROJECT_ID } from './Utils/constant';
+import { PROJECT_ID } from './Utils/Constant';
 
 const GetComments = ({ postId, likeCount, commentCount, postContent, postTitle }) => {
   const navigate = useNavigate();

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import Avatar from 'react-avatar';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -7,7 +8,7 @@ import { useUser } from '../Utils/UserProvider';
 import 'react-toastify/dist/ReactToastify.css';
 import { Ask, Answer, PostImage } from '../Icons';
 import AddPost from '../Post/AddPost';
-import { PROJECT_ID } from '../Utils/constant';
+import { PROJECT_ID } from '../Utils/Constant';
 import CreatePost from '../Post/CreatePost';
 
 const MiddleBar = () => {
@@ -22,10 +23,10 @@ const MiddleBar = () => {
   };
 
   const inputStyle = {
-    backgroundColor: theme === 'light' ? 'white' : '#333',
+    backgroundColor: theme === 'light' ? '#F7F7F8' : '#202020',
     color: theme === 'light' ? 'black' : 'white',
   };
-
+  
   const postCardStyle = {
     backgroundColor: theme === 'light' ? 'white' : 'gray',
     color: theme === 'light' ? 'black' : 'white',
@@ -59,12 +60,12 @@ const MiddleBar = () => {
     <>
       <div className='ml-72'>
         <div className='mt-2.5 rounded-sm md:left-96'>
-          <div className='border border-spacing-1 mt-20 pt-2 ' style={colour}>
+          <div className='border border-spacing-1 mt-16 pt-2 ' style={colour}>
             <div className="relative flex text-gray-700 bg-clip-border rounded-sm ">
-              <Avatar round size="25" className="mt-0.5 ml-2" name="w" />
+              <Avatar round size="28" className="mt-1 ml-2" name="w" />
               <input
-                placeholder='What do you want to ask or share?'
-                className='p-1 ml-6 border border-spacing-1 rounded-full w-full mr-4'
+                Placeholder='What do you want to ask or share?'
+                className='p-2 mx-4 border border-spacing-1 rounded-full w-full '
                 style={inputStyle}
                 onClick={() => setIsCreatePostOpen(true)}
               />

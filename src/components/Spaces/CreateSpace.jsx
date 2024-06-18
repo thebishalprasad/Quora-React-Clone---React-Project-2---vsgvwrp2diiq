@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Dialog, Card, CardBody, CardFooter, Typography, Input } from '@material-tailwind/react';
 import { toast } from 'react-toastify';
-import { PROJECT_ID } from '../Utils/constant';
+import { PROJECT_ID } from '../Utils/Constant';
 
 export default function CreateSpaceComponent() {
   const [open, setOpen] = useState(false);

@@ -1,9 +1,9 @@
 import React from 'react';
-import Leftbar from './Leftbar';
-import Adds from '../Common/Adds';
+import Leftbar from './Sidebar';
+import Adds from '../Advertising/Advertising';
 import { useUser } from '../Utils/UserProvider';
-import NavbarDefault from '../Navbar/NavbarDefault';
 import MiddleBar from './MiddleBar';
+import Navbar from '../Navbar/Navbar';
 
 const Home = () => {
     const { theme } = useUser();
@@ -13,8 +13,8 @@ const Home = () => {
   
     return (
         <div style={colour}>
-            <NavbarDefault  />
-            <div className='flex'> 
+            <Navbar  />
+            <div className='flex '> 
                 <Leftbar />
                 <MiddleBar/>      
             </div>

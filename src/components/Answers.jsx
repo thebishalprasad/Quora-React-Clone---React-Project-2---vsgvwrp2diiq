@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
 import { useUser } from './Utils/UserProvider';
 import 'react-toastify/dist/ReactToastify.css';
-import NavbarDefault from './Navbar/NavbarDefault';
-import { PROJECT_ID } from './Utils/constant';
+import NavbarDefault from './Navbar/Navbar';
+import { PROJECT_ID } from './Utils/Constant';
 
 const Answers = () => {
   

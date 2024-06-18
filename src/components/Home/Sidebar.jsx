@@ -4,13 +4,8 @@ import cooking from "../../assets/Cooking.jpg";
 import CreateSpace from '../Spaces/CreateSpace';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../Utils/UserProvider';
-import {
-    div,
-    Typography,
-    List,
-    ListItemPrefix,
-} from "@material-tailwind/react";
-import { PROJECT_ID } from '../Utils/constant';
+import { Typography,List } from "@material-tailwind/react";
+import { PROJECT_ID } from '../Utils/Constant';
 
 const Leftbar = () => {
     const { theme } = useUser();
@@ -60,8 +55,7 @@ const Leftbar = () => {
     }
 
     return (
-        <>
-            <div className="h-[calc(100vh-10rem)] max-w-[10rem] fixed top-20 ml-32" style={postCardStyle}>
+            <div className="h-[calc(100vh-10rem)] max-w-[10rem] fixed top-16 ml-28 " style={postCardStyle}>
                 <Typography variant="h5" p-1 className='text-black'>
                     <CreateSpace />
                 </Typography>
@@ -81,7 +75,6 @@ const Leftbar = () => {
                     <h1 className='ml-5 text-gray-500 text-sm'>Terms . Privacy .</h1>
                 </div>
             </div>
-        </>
     );
 }
 
