@@ -10,6 +10,7 @@ import {
   Dialog, DialogHeader, Input, Textarea
 } from "@material-tailwind/react";
 import { PROJECT_ID } from "../Utils/Constant";
+
 export default function CreatePost() {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");

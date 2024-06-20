@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Avatar from 'react-avatar';
 import axios from 'axios';
+import { RxDividerVertical } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import GetComments from '../GetComments';
 import { useUser } from '../Utils/UserProvider';
@@ -18,7 +18,7 @@ const MiddleBar = () => {
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
 
   const colour = {
-    backgroundColor: theme === 'light' ? 'white' : 'black',
+    backgroundColor: theme === 'light' ? '#FFFFFF' : 'black',
     color: theme === 'light' ? 'black' : 'white'
   };
 
@@ -57,7 +57,7 @@ const MiddleBar = () => {
   };
 
   return (
-    <>
+    <div>
       <div className='ml-72'>
         <div className='mt-2.5 rounded-sm md:left-96'>
           <div className='border border-spacing-1 mt-16 pt-2 ' style={colour}>
@@ -65,23 +65,23 @@ const MiddleBar = () => {
               <Avatar round size="28" className="mt-1 ml-2" name="w" />
               <input
                 Placeholder='What do you want to ask or share?'
-                className='p-2 mx-4 border border-spacing-1 rounded-full w-full '
+                className='p-2 mx-4 border border-color: rgb(222,224,225) border-spacing-1 rounded-full w-full h-8 '
                 style={inputStyle}
                 onClick={() => setIsCreatePostOpen(true)}
               />
             </div>
-            <div className='flex justify-around p-2 xs:gap-5'>
-              <div className='flex items-center ml-4'>
+            <div className='flex justify-around p-2 xs:gap-5 text-xs'>
+              <div className='flex items-center justify-center ml-4 border border-transparent rounded-3xl w-1/3 hover:border-gray-300 hover:bg-gray-100 cursor-pointer'>
                 <Ask />
                 <h1 className='flex items-center'><CreatePost /></h1>
               </div>
-
-              <div className='flex items-center'>
+              <RxDividerVertical className='text-gray-300 h-3 lg:h-5 w-3 lg:w-5 hidden lg:flex' />
+              <div className='flex items-center justify-center border border-transparent rounded-3xl w-1/3 hover:border-gray-300 hover:bg-gray-100 cursor-pointer'>
                 <Answer />
                 <h1 className='' onClick={() => navigate('/Answers')}>Answer</h1>
               </div>
-
-              <div className='flex items-center mr-6'>
+              <RxDividerVertical className='text-gray-300 h-3 lg:h-5 w-3 lg:w-5 hidden lg:flex' />
+              <div className='flex items-center justify-center mr-6 border border-transparent rounded-3xl w-1/3 hover:border-gray-300 hover:bg-gray-100 cursor-pointer'>
                 <PostImage />
                 <div className='' ><AddPost /></div>
               </div>
@@ -127,7 +127,7 @@ const MiddleBar = () => {
         </div>
       </div>
       {isCreatePostOpen && <CreatePost />}
-    </>
+    </div>
   );
 };
 
