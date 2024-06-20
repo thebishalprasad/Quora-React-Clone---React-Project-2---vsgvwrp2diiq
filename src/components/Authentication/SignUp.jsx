@@ -12,7 +12,7 @@ import {
     Typography,
     Input
 } from "@material-tailwind/react";
-import { APP_TYPE, PROJECT_ID } from "../Utils/Constant";
+import { APP_TYPE, PROJECT_ID, SIGNUP_API } from "../Utils/Constant";
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -34,7 +34,30 @@ const SignUp = () => {
         }));
     };
 
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
     const handleSubmit = async () => {
+        // Validation checks
+        if (!formData.name) {
+            toast.error('Name is mandatory');
+            return;
+        } else if (!formData.email) {
+            toast.error('Email is mandatory');
+            return;
+        } else if (!validateEmail(formData.email)) {
+            toast.error('Invalid email format');
+            return;
+        } else if (!formData.password) {
+            toast.error('Password cannot be empty');
+            return;
+        } else if (formData.password.length < 6) {
+            toast.error('Password must be at least 6 characters');
+            return;
+        }
+
         try {
             const body = {
                 name: formData.name,
@@ -43,8 +66,7 @@ const SignUp = () => {
                 appType: APP_TYPE,
             };
 
-            const response = await axios.post(
-                'https://academics.newtonschool.co/api/v1/user/signup',
+            const response = await axios.post(SIGNUP_API,
                 JSON.stringify(body),
                 {
                     headers: {

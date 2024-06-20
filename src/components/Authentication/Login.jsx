@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import signUpBg from '../../assets/SignUpBg.jpg';
 import googleLogo from '../../assets/google.jpeg';
 import facebookLogo from '../../assets/facebook.jpeg';
-import { APP_TYPE, PROJECT_ID } from '../Utils/Constant';
+import { APP_TYPE, LOGIN_API, PROJECT_ID } from '../Utils/Constant';
 import SignUp from './SignUp';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -45,7 +45,7 @@ export default function Login() {
         }
 
         try {
-            const response = await axios.post('https://academics.newtonschool.co/api/v1/user/login', getData, {
+            const response = await axios.post(LOGIN_API, getData, {
                 headers: {
                     projectID: PROJECT_ID,
                     'Content-Type': 'application/json',
