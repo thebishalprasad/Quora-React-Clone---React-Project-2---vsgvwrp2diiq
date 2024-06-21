@@ -58,7 +58,7 @@ const MiddleBar = () => {
 
   return (
     <div>
-      <div className='ml-72'>
+      <div className='ml-64'>
         <div className='mt-2.5 rounded-sm md:left-96'>
           <div className='border border-spacing-1 mt-16 pt-2 ' style={colour}>
             <div className="relative flex text-gray-700 bg-clip-border rounded-sm ">

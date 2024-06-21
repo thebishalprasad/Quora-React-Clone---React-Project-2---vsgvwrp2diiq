@@ -1,13 +1,13 @@
 import "../styles/App.css";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom"
 import Home from "./Home/Home";
-import { Notification } from "./Navbar/Notification";
 import ComingSoon from "./Common/ComingSoon";
 import Answers from "./Answers";
 import Login from "./Authentication/Login";
 import PostDetails from "./Post/PostDetails";
 import CreatePost from "./Post/CreatePost";
 import NotFound from "./Common/NotFound";
+import { Notification } from "./Navbar/Notification";
 
 const PrivateRoute = ({ children }) => {
   const isAuthenticated = !!localStorage.getItem('token');

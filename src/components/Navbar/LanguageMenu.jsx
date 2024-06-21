@@ -19,7 +19,7 @@ const LanguageMenu = () => {
             <img
               // variant="circular"
               // alt="tania andrew"
-              className="cursor-pointer w-7 h-7 rounded-full ml-4 mt-1"
+              className="cursor-pointer w-7 h-7 rounded-full ml-4 "
               src={globe}
             />
             {/* <Globe/> */}

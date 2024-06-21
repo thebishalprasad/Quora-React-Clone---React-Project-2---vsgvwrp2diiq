@@ -33,7 +33,7 @@ const Search = ({ theme, searchResults, setSearchResults }) => {
 
     return (
         <div style={searchBoxStyle}>
-            <div className='flex items-center px-2 border border-[#DEE0E1] h-5 lg:h-8  w-60 lg:w-96 rounded-md '>
+            <div className='flex items-center px-2 border border-[#DEE0E1] h-5 lg:h-8  w-60 lg:w-80 rounded-md '>
                 <div className='flex gap-1 ml-2 items-center'>
                     <IoIosSearch className='text-gray-600 h-5 w-5 cursor-pointer' />
                     <input
