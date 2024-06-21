@@ -8,7 +8,7 @@ import { useUser } from '../Utils/UserProvider';
 import 'react-toastify/dist/ReactToastify.css';
 import { Ask, Answer, PostImage } from '../Icons';
 import AddPost from '../Post/AddPost';
-import { PROJECT_ID } from '../Utils/Constant';
+import { POST_API, PROJECT_ID } from '../Utils/Constant';
 import CreatePost from '../Post/CreatePost';
 
 const MiddleBar = () => {
@@ -35,7 +35,7 @@ const MiddleBar = () => {
   const fetchPosts = async () => {
     const dataUser = localStorage.getItem("token");
     try {
-      const response = await axios.get('https://academics.newtonschool.co/api/v1/quora/post?limit=100', {
+      const response = await axios.get(POST_API, {
         headers: {
           'projectID': PROJECT_ID,
           'Authorization': `Bearer ${dataUser}`

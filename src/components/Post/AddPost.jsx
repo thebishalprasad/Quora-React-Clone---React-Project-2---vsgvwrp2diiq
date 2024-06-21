@@ -30,7 +30,7 @@ export default function AddPost() {
         'https://academics.newtonschool.co/api/v1/quora/post/',
         formData,
         {
-          headers: {
+          headers: {  
             'Authorization': `Bearer ${token}`,
             'projectID': PROJECT_ID,
             'Content-Type': 'multipart/form-data'
@@ -53,9 +53,6 @@ export default function AddPost() {
       value: "Add Question",
       desc: (
         <div className="w-full max-w-[600px] bg-white dark:bg-gray-900 rounded-lg py-6 px-3 sm:px-6 flex flex-col items-start gap-2">
-          {/* <div className="text-lg font-semibold mx-auto text-center">
-            Add Question
-          </div> */}
           <div className="w-full h-1 bg-blue-600 rounded-t"></div>
           <div className="p-3 w-full bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-md text-sm sm:text-base">
             <div className="font-bold">
@@ -88,10 +85,6 @@ export default function AddPost() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
-          {/* <label Add QuestionFor="post-image" className="font-semibold">
-            Upload Image :
-          </label> */}
-
           <div className="w-full flex justify-between items-center px-6 py-4">
             <div className="flex gap-4 items-center">
               <h1
