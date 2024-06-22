@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify';
-import { Dialog, DialogHeader, DialogBody, DialogFooter, Input, Textarea } from "@material-tailwind/react";
-import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/react";
-import { POST_API, PROJECT_ID } from "../Utils/Constant";
+import {
+  Tabs,
+  TabsHeader,
+  TabsBody,
+  Tab,
+  TabPanel,
+  Dialog,
+  DialogHeader,
+  Input,
+  Textarea
+} from "@material-tailwind/react";
+import { PROJECT_ID } from "../Utils/Constant";
 
-export default function CreatePost() {
+export default function AddQuestionPost() {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
+
   const openModal = () => setShow(true);
   const closeModal = () => setShow(false);
 
@@ -20,14 +30,14 @@ export default function CreatePost() {
   const createPost = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
     formData.append("content", content);
-
     try {
-      const response = await axios.post(POST_API,formData,
+      await axios.post(
+        'https://academics.newtonschool.co/api/v1/quora/post/',
+        formData,
         {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -37,36 +47,30 @@ export default function CreatePost() {
         }
       );
       toast.success('Post created successfully');
-      console.log(response);
-      window.location.href = "/home";
       setShow(false);
+      window.location.reload();
     } catch (error) {
       console.error('There was an error creating the post!', error);
       toast.error('There was an error creating the post!');
     }
   };
 
-  const data = [
+  const tabsData = [
     {
       label: "Add Question",
-      value: "Add Question",
+      value: "add-question",
       desc: (
         <form onSubmit={createPost} className="w-full max-w-[600px] bg-white dark:bg-gray-900 rounded-lg py-6 px-3 sm:px-6 flex flex-col items-start gap-2">
           <div className="w-full h-1 bg-blue-600 rounded-t"></div>
           <div className="p-3 w-full bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-md text-sm sm:text-base">
-            <div className="font-bold">
-              Tips on getting good answers quickly
-            </div>
+            <div className="font-bold">Tips on getting good answers quickly</div>
             <ul className="list-disc list-inside">
               <li>Make sure your question has not been asked already</li>
               <li>Keep your question short and to the point</li>
               <li>Double-check grammar and spelling</li>
             </ul>
           </div>
-
-          <label htmlFor="post-title" className="font-semibold">
-            Post Title <span className="font-normal">(required)</span>:
-          </label>
+          <label htmlFor="post-title" className="font-semibold">Post Title <span className="font-normal">(required)</span>:</label>
           <Input
             id="post-title"
             placeholder="Enter The Question or Title"
@@ -74,9 +78,7 @@ export default function CreatePost() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <label htmlFor="post-content" className="font-semibold">
-            Post Description :
-          </label>
+          <label htmlFor="post-content" className="font-semibold">Post Description :</label>
           <Textarea
             id="post-content"
             placeholder="Enter Description or Answer"
@@ -106,12 +108,10 @@ export default function CreatePost() {
     },
     {
       label: "Create Post",
-      value: "Create Post",
+      value: "create-post",
       desc: (
         <form onSubmit={createPost} className="w-full h-max text-gray-700 p-4 antialiased font-sans text-base font-light leading-relaxed">
-          <div className="text-lg font-semibold mx-auto text-center">
-            Create Post
-          </div>
+          <div className="text-lg font-semibold mx-auto text-center">Create Post</div>
           <div className="relative w-full min-w-[200px]">
             <Textarea
               rows="2"
@@ -152,19 +152,19 @@ export default function CreatePost() {
 
   return (
     <div>
-      <h1 onClick={openModal} className="cursor-pointer">Post</h1>
+      <h1 onClick={openModal} className="cursor-pointer">Ask</h1>
       <Dialog open={show} handler={closeModal} size="sm">
-        <DialogHeader> 
-          <Tabs value="Create Post" >
+        <DialogHeader>
+          <Tabs value="add-question">
             <TabsHeader className="bg-blue-500">
-              {data.map(({ label, value }) => (
+              {tabsData.map(({ label, value }) => (
                 <Tab key={value} value={value}>
                   {label}
                 </Tab>
               ))}
             </TabsHeader>
             <TabsBody>
-              {data.map(({ value, desc }) => (
+              {tabsData.map(({ value, desc }) => (
                 <TabPanel key={value} value={value}>
                   {desc}
                 </TabPanel>

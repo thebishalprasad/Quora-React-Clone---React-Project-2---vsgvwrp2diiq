@@ -7,9 +7,9 @@ import GetComments from '../GetComments';
 import { useUser } from '../Utils/UserProvider';
 import 'react-toastify/dist/ReactToastify.css';
 import { Ask, Answer, Post } from '../Icons';
-import AddPost from '../Post/AddPost';
+import AddPost from '../Post/CreatePost';
 import { POST_API, PROJECT_ID } from '../Utils/Constant';
-import CreatePost from '../Post/CreatePost';
+import CreatePost from '../Post/AddQuestionPost';
 
 const MiddleBar = () => {
   const { theme } = useUser();
