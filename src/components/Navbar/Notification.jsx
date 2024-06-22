@@ -1,51 +1,43 @@
-import React from "react";
-import {h1,Dialog,DialogHeader,DialogBody,DialogFooter,Typography} from "@material-tailwind/react";
-import { Notify } from "../Icons";
- 
-export function Notification() {
-  const [open, setOpen] = React.useState(false);
- 
-  const handleOpen = () => setOpen(!open);
- 
+import React from 'react';
+import Navbar from './Navbar';
+
+const NotificationItem = () => {
   return (
-    <>
-      <h1 className="lg:pr-2"><Notify/></h1>
-      <Dialog open={open} handler={handleOpen}>
-        <DialogHeader>
-          <Typography variant="h5" color="blue-gray">
-            Your Attention is Required!
-          </Typography>
-        </DialogHeader>
-        <DialogBody divider className="grid place-items-center gap-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="h-16 w-16 text-red-500"
-          >
-            <path
-              fillRule="evenodd"
-              d="M5.25 9a6.75 6.75 0 0113.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 01-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 11-7.48 0 24.585 24.585 0 01-4.831-1.244.75.75 0 01-.298-1.205A8.217 8.217 0 005.25 9.75V9zm4.502 8.9a2.25 2.25 0 104.496 0 25.057 25.057 0 01-4.496 0z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <Typography color="red" variant="h4">
-            You should read this!
-          </Typography>
-          <Typography className="text-center font-normal">
-            A small river named Duden flows by their place and supplies it with
-            the necessary regelialia.
-          </Typography>
-        </DialogBody>
-        <DialogFooter className="space-x-2">
-          <h1 variant="text" color="blue-gray" onClick={handleOpen}>
-            close
-          </h1>
-          <h1 variant="gradient" className="bg-red-500 p-1 rounded-xl " onClick={handleOpen}>
-            Ok, Got it
-          </h1>
-        </DialogFooter>
-      </Dialog>
-    </>
+    <div className="bg-[#EDF1F5] p-4 rounded-lg shadow-lg flex items-start space-x-4">
+      <img
+        src="https://via.placeholder.com/50"
+        alt="User Avatar"
+        className="w-12 h-12 rounded-full"
+      />
+      <div className="flex-1">
+        <div className="text-gray-600 text-sm">
+          <span className="font-bold">Earn money</span> · Posted in a Space you might like · Tue
+        </div>
+        <div className="text-gray-800 mt-1">
+          Is the 94.1 LPA salary in Bangalore too low for a 32-year-old software engineer?
+        </div>
+      </div>
+      <div className="text-gray-400 text-lg cursor-pointer">...</div>
+    </div>
   );
-}
+};
+
+const Notification = () => {
+  return (
+    <div>
+      <Navbar />
+      <div className="max-w-2xl mx-auto pt-16">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold">Notification</h2>
+          <div className="flex items-center space-x-2">
+            <button className="text-blue-500 hover:underline">Mark All As Read</button>
+            <button className="text-blue-500 hover:underline">Settings</button>
+          </div>
+        </div>
+        <NotificationItem />
+      </div>
+    </div>
+  );
+};
+
+export default Notification;

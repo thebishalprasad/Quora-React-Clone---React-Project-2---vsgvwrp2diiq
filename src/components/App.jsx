@@ -7,7 +7,7 @@ import Login from "./Authentication/Login";
 import PostDetails from "./Post/PostDetails";
 import CreatePost from "./Post/CreatePost";
 import NotFound from "./Common/NotFound";
-import { Notification } from "./Navbar/Notification";
+import Notification from "./Navbar/Notification";
 
 const PrivateRoute = ({ children }) => {
   const isAuthenticated = !!localStorage.getItem('token');
