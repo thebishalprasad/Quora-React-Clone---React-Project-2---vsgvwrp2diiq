@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import GetComments from '../GetComments';
 import { useUser } from '../Utils/UserProvider';
 import 'react-toastify/dist/ReactToastify.css';
-import { Ask, Answer, PostImage } from '../Icons';
+import { Ask, Answer, Post } from '../Icons';
 import AddPost from '../Post/AddPost';
 import { POST_API, PROJECT_ID } from '../Utils/Constant';
 import CreatePost from '../Post/CreatePost';
@@ -52,9 +52,6 @@ const MiddleBar = () => {
     fetchPosts();
   }, []);
 
-  const handlePostOpen = (postId) => {
-    // navigate(`/question/${postId}`);
-  };
 
   return (
     <div>
@@ -82,7 +79,7 @@ const MiddleBar = () => {
               </div>
               <RxDividerVertical className='text-gray-300 h-3 lg:h-5 w-3 lg:w-5 hidden lg:flex' />
               <div className='flex items-center justify-center mr-6 border border-transparent rounded-3xl w-1/3 hover:border-gray-300 hover:bg-gray-100 cursor-pointer'>
-                <PostImage />
+                <Post />
                 <div className='' ><AddPost /></div>
               </div>
             </div>
@@ -101,7 +98,7 @@ const MiddleBar = () => {
                     <h1 className='ml-5 font-semibold'>{post.author?.name}</h1>
                   </div>
                   <div className="p-6">
-                    <h5 className="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-black" onClick={handlePostOpen}>
+                    <h5 className="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-black">
                       {post?.title}
                     </h5>
                     <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">

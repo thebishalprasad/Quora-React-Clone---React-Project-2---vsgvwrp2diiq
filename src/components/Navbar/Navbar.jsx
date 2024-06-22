@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom'; 
 import { RxDividerVertical } from "react-icons/rx";
 import quora from '../../assets/Quora.jpg';
-import { Icons, Post, Home, Spaces, Notify } from '../Icons';
 import { useUser } from '../Utils/UserProvider';
 import { Tooltip } from '@material-tailwind/react';
 import CreatePost from '../Post/CreatePost';
@@ -10,6 +9,7 @@ import { ProfileMenu } from './ProfileMenu';
 import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import Search from './Search';
+import { Answers, Following, Home, Notify, Spaces } from '../Icons';
 
 const Navbar = () => {
     const { theme } = useUser();
@@ -52,12 +52,12 @@ const Navbar = () => {
                         </NavLink>
                         <NavLink to="/ComingSoon" activeClassName="text-red-800" className="mr-5 cursor-pointer font-medium">
                             <Tooltip title="Post">
-                                <Post className="w-7 h-7 md:w-6 md:h-6" />
+                                <Following className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
                         </NavLink>
                         <NavLink to="/Answers" activeClassName="text-red-800" className="mr-5 cursor-pointer font-medium">
                             <Tooltip title="Answers">
-                                <Icons className="w-7 h-7 md:w-6 md:h-6" />
+                                <Answers className="w-7 h-7 md:w-6 md:h-6" />
                             </Tooltip>
                         </NavLink>
                         <NavLink to="/ComingSoon" activeClassName="text-red-800" className="mr-5 cursor-pointer font-medium">
