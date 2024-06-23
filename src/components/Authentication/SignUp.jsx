@@ -2,16 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { useNavigate } from 'react-router-dom';
-import {
-    Dialog,
-    Card,
-    CardBody,
-    CardFooter,
-    Typography,
-    Input
-} from "@material-tailwind/react";
+import {Dialog,Card,CardBody,CardFooter,Typography,Input} from "@material-tailwind/react";
 import { APP_TYPE, PROJECT_ID, SIGNUP_API } from "../Utils/Constant";
 
 const SignUp = () => {
@@ -40,7 +32,6 @@ const SignUp = () => {
     };
 
     const handleSubmit = async () => {
-        // Validation checks
         if (!formData.name) {
             toast.error('Name is mandatory');
             return;

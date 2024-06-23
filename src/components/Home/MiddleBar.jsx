@@ -26,7 +26,7 @@ const MiddleBar = () => {
     backgroundColor: theme === 'light' ? '#F7F7F8' : '#202020',
     color: theme === 'light' ? 'black' : 'white',
   };
-  
+
   const postCardStyle = {
     backgroundColor: theme === 'light' ? 'white' : 'gray',
     color: theme === 'light' ? 'black' : 'white',
@@ -58,7 +58,7 @@ const MiddleBar = () => {
         <div className='mt-2.5 rounded-sm md:left-96'>
           <div className='border border-spacing-1 mt-16 pt-2' style={colour}>
             <div className="relative flex text-gray-700 bg-clip-border rounded-sm">
-              <Avatar round size="30" className="mt-0.5 ml-2" name="w" />
+              <Avatar round size="32" className="mt-0.5 ml-2" name="w" />
               <input
                 Placeholder='What do you want to ask or share?'
                 className='p-2 mx-4 border border-color: rgb(222,224,225) border-spacing-1 rounded-full w-full h-8'
@@ -86,17 +86,25 @@ const MiddleBar = () => {
           <div>
             {posts.map((post, index) => {
               const authorInitial = post.author?.name ? post.author?.name.charAt(0).toUpperCase() : '?';
+              const postDate = new Date(post.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+              });
               return (
                 <div className="relative flex flex-col mt-2 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm lg:w-52 md:w-[26rem] sm:w-[22rem] xl:w-[38rem]" key={index} style={postCardStyle}>
-                  <div className='flex items-center p-2'>
+                  <div className='flex items-center pl-2'>
                     {post.author?.profileImage ? (
                       <img className="w-8 h-8 rounded-full" src={post.author?.profileImage} alt="Profile" />
                     ) : (
-                      <Avatar round size="30" className="mt-0.5 ml-1" name={authorInitial} />
+                      <Avatar round size="32" className="ml-1" name={authorInitial} />
                     )}
-                    <h1 className='ml-3 font-semibold'>{post.author?.name}</h1>
+                    <div className='ml-3 flex-col-2 pt-2'>
+                      <h1 className='font-semibold'>{post.author?.name}</h1>
+                      <span className="text-xs text-gray-500">{postDate}</span>
+                    </div>
                   </div>
-                  <div className="p-6">
+                  <div className="p-3">
                     <h5 className="block mb-2 font-sans text-md antialiased font-semibold leading-snug tracking-normal text-black">
                       {post?.title}
                     </h5>
@@ -105,7 +113,7 @@ const MiddleBar = () => {
                     </p>
                   </div>
                   {post.images.length > 0 && (
-                    <div className="relative h-80 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-sm bg-blue-gray-500 shadow-blue-gray-500/40">
+                    <div className="relative h-80 overflow-hidden text-white shadow-lg bg-clip-border rounded-sm bg-blue-gray-500 shadow-blue-gray-500/40">
                       <img
                         src={post.images[0]}
                         alt="card-image"
