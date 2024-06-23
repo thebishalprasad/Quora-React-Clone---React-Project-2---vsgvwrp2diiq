@@ -35,7 +35,7 @@ const MiddleBar = () => {
   const fetchPosts = async () => {
     const dataUser = localStorage.getItem("token");
     try {
-      const response = await axios.get(POST_API, {
+      const response = await axios.get(`${POST_API}?limit=100`, {
         headers: {
           'projectID': PROJECT_ID,
           'Authorization': `Bearer ${dataUser}`
@@ -60,7 +60,7 @@ const MiddleBar = () => {
             <div className="relative flex text-gray-700 bg-clip-border rounded-sm">
               <Avatar round size="32" className="mt-0.5 ml-2" name="w" />
               <input
-                Placeholder='What do you want to ask or share?'
+                placeholder='What do you want to ask or share?'
                 className='p-2 mx-4 border border-color: rgb(222,224,225) border-spacing-1 rounded-full w-full h-8'
                 style={inputStyle}
                 onClick={() => setIsCreatePostOpen(true)}
