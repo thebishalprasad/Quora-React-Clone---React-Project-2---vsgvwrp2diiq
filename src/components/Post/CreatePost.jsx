@@ -26,10 +26,6 @@ export default function CreatePost() {
     formData.append("title", title);
     formData.append("content", content);
 
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`); // Log formData contents
-    }
-
     try {
       const response = await axios.post(POST_API, formData, {
         headers: {
@@ -46,21 +42,6 @@ export default function CreatePost() {
     } catch (error) {
       console.error('Error creating the post:', error);
       toast.error('There was an error creating the post!');
-
-      // Additional error handling
-      if (error.response) {
-        // Server responded with a status other than 200 range
-        console.log('Error response data:', error.response.data);
-        console.log('Error response status:', error.response.status);
-        console.log('Error response headers:', error.response.headers);
-      } else if (error.request) {
-        // Request was made but no response was received
-        console.log('Error request data:', error.request);
-      } else {
-        // Something happened in setting up the request
-        console.log('Error message:', error.message);
-      }
-      console.log('Error config:', error.config);
     }
   };
 
