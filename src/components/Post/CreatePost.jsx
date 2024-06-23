@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify';
-import { Dialog, DialogHeader, DialogBody, DialogFooter, Input, Textarea } from "@material-tailwind/react";
-import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/react";
+import { Dialog, DialogHeader, Tabs, TabsHeader, TabsBody, Tab, TabPanel, Input, Textarea } from "@material-tailwind/react";
 import { POST_API, PROJECT_ID } from "../Utils/Constant";
 
 export default function CreatePost() {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [image, setImage] = useState(null);
+  const [images, setImage] = useState(null);
+
   const openModal = () => setShow(true);
   const closeModal = () => setShow(false);
 
@@ -22,27 +22,45 @@ export default function CreatePost() {
     const token = localStorage.getItem("token");
 
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("images", images);
     formData.append("title", title);
     formData.append("content", content);
 
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`); // Log formData contents
+    }
+
     try {
-      const response = await axios.post(POST_API,formData,
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'projectID': PROJECT_ID,
-            'Content-Type': 'multipart/form-data'
-          }
+      const response = await axios.post(POST_API, formData, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'projectID': PROJECT_ID,
+          'Content-Type': 'multipart/form-data'
         }
-      );
+      });
+
       toast.success('Post created successfully');
       console.log(response);
       window.location.href = "/home";
       setShow(false);
     } catch (error) {
-      console.error('There was an error creating the post!', error);
+      console.error('Error creating the post:', error);
       toast.error('There was an error creating the post!');
+
+      // Additional error handling
+      if (error.response) {
+        // Server responded with a status other than 200 range
+        console.log('Error response data:', error.response.data);
+        console.log('Error response status:', error.response.status);
+        console.log('Error response headers:', error.response.headers);
+      } else if (error.request) {
+        // Request was made but no response was received
+        console.log('Error request data:', error.request);
+      } else {
+        // Something happened in setting up the request
+        console.log('Error message:', error.message);
+      }
+      console.log('Error config:', error.config);
     }
   };
 
@@ -75,7 +93,7 @@ export default function CreatePost() {
             onChange={(e) => setTitle(e.target.value)}
           />
           <label htmlFor="post-content" className="font-semibold">
-            Post Description :
+            Post Description:
           </label>
           <Textarea
             id="post-content"
@@ -84,22 +102,31 @@ export default function CreatePost() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
+
+          <label htmlFor="post-image" className="font-semibold">
+            Upload Image:
+          </label>
+          <input
+            id="post-image"
+            type="file"
+            className="border border-gray-300 p-2 mt-2"
+            onChange={handleImageChange}
+          />
+
           <div className="w-full flex justify-between items-center px-6 py-4">
-            <div className="flex gap-4 items-center">
-              <button
-                type="button"
-                onClick={closeModal}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300"
-              >
-                Close
-              </button>
-              <button
-                type="submit"
-                className="hidden sm:block bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-medium py-2 px-4 rounded-full transition duration-300"
-              >
-                Add Post
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={closeModal}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300"
+            >
+              Close
+            </button>
+            <button
+              type="submit"
+              className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-medium py-2 px-4 rounded-full transition duration-300"
+            >
+              Add Post
+            </button>
           </div>
         </form>
       ),
@@ -116,7 +143,7 @@ export default function CreatePost() {
             <Textarea
               rows="2"
               placeholder="Give a title..."
-              className="peer w-full h-full min-h-[100px] bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 resize-y disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none disabled:cursor-not-allowed transition-all border-b placeholder-shown:border-blue-gray-200 text-sm pt-4 pb-1.5 mt-1.5 border-blue-gray-200 focus:border-gray-900"
+              className="w-full h-full min-h-[100px] bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 resize-y disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none disabled:cursor-not-allowed transition-all border-b placeholder-shown:border-blue-gray-200 text-sm pt-4 pb-1.5 mt-1.5 border-blue-gray-200 focus:border-gray-900"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -125,26 +152,24 @@ export default function CreatePost() {
             <Textarea
               rows="8"
               placeholder="Say something..."
-              className="peer w-full h-full min-h-[100px] bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 resize-y disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none disabled:cursor-not-allowed transition-all border-b placeholder-shown:border-blue-gray-200 text-sm pt-4 pb-1.5 mt-1.5 border-blue-gray-200 focus:border-gray-900"
+              className="w-full h-full min-h-[100px] bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 resize-y disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none disabled:cursor-not-allowed transition-all border-b placeholder-shown:border-blue-gray-200 text-sm pt-4 pb-1.5 mt-1.5 border-blue-gray-200 focus:border-gray-900"
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
           </div>
-          <div className="flex gap-2 justify-between flex-col sm:flex-row">
-            <div className="relative w-full min-w-[200px] h-10">
-              <input
-                type="file"
-                className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 disabled:cursor-not-allowed transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent placeholder:opacity-0 focus:placeholder:opacity-100 text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
-                onChange={handleImageChange}
-              />
-            </div>
-            <button
-              type="submit"
-              className="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none bg-blue-500 capitalize rounded-full"
-            >
-              Post
-            </button>
+          <div className="relative w-full min-w-[200px] h-10">
+            <input
+              type="file"
+              className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 disabled:cursor-not-allowed transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent placeholder:opacity-0 focus:placeholder:opacity-100 text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+              onChange={handleImageChange}
+            />
           </div>
+          <button
+            type="submit"
+            className="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none bg-blue-500 capitalize rounded-full"
+          >
+            Post
+          </button>
         </form>
       ),
     },
@@ -154,8 +179,8 @@ export default function CreatePost() {
     <div>
       <h1 onClick={openModal} className="cursor-pointer">Post</h1>
       <Dialog open={show} handler={closeModal} size="sm">
-        <DialogHeader> 
-          <Tabs value="Create Post" >
+        <DialogHeader>
+          <Tabs value="Create Post">
             <TabsHeader className="bg-blue-500">
               {data.map(({ label, value }) => (
                 <Tab key={value} value={value}>
