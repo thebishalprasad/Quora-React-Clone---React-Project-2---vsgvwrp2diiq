@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import signUpBg from '../../assets/SignUpBg.jpg';
+import LoginBg from '../../assets/LoginBg.jpg';
 import googleLogo from '../../assets/google.jpeg';
 import facebookLogo from '../../assets/facebook.jpeg';
 import { APP_TYPE, LOGIN_API, PROJECT_ID } from '../Utils/Constant';
@@ -74,7 +74,7 @@ export default function Login() {
         <>
             <div
                 style={{
-                    backgroundImage: `url(${signUpBg})`,
+                    backgroundImage: `url(${LoginBg})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
                     height: '100vh',
