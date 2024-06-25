@@ -98,7 +98,7 @@ const MiddleBar = () => {
   }, [fetchPosts]);
 
   return (
-    <div className="lg:ml-[21%] lg:w-[45%] md:w-full md:mx-[2%] mt-[4%] md:mt-[5%]">
+    <div className="lg:ml-[22%] lg:w-[45%] md:w-full md:mx-[2%] mt-[4%] md:mt-[5%]">
       <div className="relative flex flex-col pt-3 text-gray-700 bg-white shadow-md bg-clip-border rounded-sm" style={colour}>
         <div className="relative flex text-gray-700 bg-clip-border rounded-sm" onClick={() => setShow(true)}>
           <Avatar round size="32" className="mt-0.5 ml-2" name="w" />

@@ -59,7 +59,7 @@ const Leftbar = () => {
     }
 
     return (
-        <div className="fixed mt-[5%] ml-[17%] w-[12%] lg:w-[10%] lg:ml-[10%]" style={postCardStyle}>
+        <div className="fixed mt-[5%] ml-[17%] w-[12%] lg:w-[10%] lg:ml-[11%]" style={postCardStyle}>
         <div variant="h5" className="text-black mb-4">
             <CreateSpace onNewCommunity={handleNewCommunity} />
         </div>
