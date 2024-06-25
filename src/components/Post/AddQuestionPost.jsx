@@ -12,7 +12,7 @@ import {
   Input,
   Textarea
 } from "@material-tailwind/react";
-import { PROJECT_ID } from "../Utils/Constant";
+import { POST_API, PROJECT_ID } from "../Utils/Constant";
 
 export default function AddQuestionPost() {
   const [show, setShow] = useState(false);
@@ -31,13 +31,12 @@ export default function AddQuestionPost() {
     e.preventDefault();
     const token = localStorage.getItem("token");
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("images", image);
     formData.append("title", title);
     formData.append("content", content);
+
     try {
-      await axios.post(
-        'https://academics.newtonschool.co/api/v1/quora/post/',
-        formData,
+      const response = await axios.post(POST_API,formData,
         {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -50,8 +49,10 @@ export default function AddQuestionPost() {
       setShow(false);
       window.location.reload();
     } catch (error) {
+      setShow(false);
       console.error('There was an error creating the post!', error);
-      toast.error('There was an error creating the post!');
+      const errorMessage = error.response?.data?.message || error.message || 'There was an error creating the post!';
+      toast.error(errorMessage);
     }
   };
 

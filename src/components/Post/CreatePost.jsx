@@ -5,7 +5,7 @@ import { Dialog, DialogHeader, Tabs, TabsHeader, TabsBody, Tab, TabPanel, Input,
 import { POST_API, PROJECT_ID } from "../Utils/Constant";
 
 export default function CreatePost() {
-  const [show, setShow] = useState(false);
+  const [show,setShow]= useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [images, setImage] = useState(null);
@@ -27,20 +27,20 @@ export default function CreatePost() {
     formData.append("content", content);
 
     try {
-      const response = await axios.post(POST_API, formData, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'projectID': PROJECT_ID,
-          'Content-Type': 'multipart/form-data'
+      const response = await axios.post(POST_API,formData,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'projectID': PROJECT_ID,
+            'Content-Type': 'multipart/form-data'
+          }
         }
-      });
-
+      );
       toast.success('Post created successfully');
-      console.log(response);
-      window.location.href = "/home";
+      window.location.reload();
       setShow(false);
     } catch (error) {
-      console.error('Error creating the post:', error);
+      console.error('There was an error creating the post!', error);
       toast.error('There was an error creating the post!');
     }
   };

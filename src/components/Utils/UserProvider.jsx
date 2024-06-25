@@ -1,9 +1,11 @@
-import { createContext, useContext, useState,useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+    const [show, setShow] = useState(false);
     const [theme, setTheme] = useState('light');
+
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
@@ -17,22 +19,14 @@ export const UserProvider = ({ children }) => {
         localStorage.setItem('theme', newTheme);
     };
 
+    const object = { theme, toggleTheme, show, setShow };
 
-    const onTokenHandler = (data) => {
-        setToken(data);
-    }
-
-    const object = {
-        theme,toggleTheme
-    }
-
-
-    return (<div>
+    return (
         <UserContext.Provider value={object}>
             {children}
         </UserContext.Provider>
-    </div>)
-}
+    );
+};
 
 export function useUser() {
     return useContext(UserContext);
