@@ -3,10 +3,10 @@ import Avatar from 'react-avatar';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import GetComments from './GetComments';
-import { useUser } from './Utils/UserProvider';
+import { useUser } from '../Utils/UserProvider';
 import 'react-toastify/dist/ReactToastify.css';
-import { PROJECT_ID } from './Utils/Constant';
-import Navbar from './Navbar/Navbar';
+import { PROJECT_ID } from '../Utils/Constant';
+import Navbar from '../Navbar/Navbar';
 
 const Answers = () => {
   

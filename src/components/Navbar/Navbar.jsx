@@ -9,7 +9,7 @@ import { ProfileMenu } from './ProfileMenu';
 import LanguageMenu from './LanguageMenu';
 import Subscription from './Subscription';
 import Search from './Search';
-import { Answers, Following, Home, Notify, Spaces } from '../Icons';
+import { Answers, Following, Home, Notify, Spaces } from '../Common/Icons';
 
 const Navbar = () => {
     const { theme } = useUser();
