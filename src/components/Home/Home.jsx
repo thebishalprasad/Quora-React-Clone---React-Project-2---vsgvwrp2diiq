@@ -16,9 +16,9 @@ const Home = () => {
             <Navbar  />
             <div className='flex '> 
                 <Leftbar />
-                <MiddleBar/>      
+                <MiddleBar/>   
+                <Adds />   
             </div>
-            <Adds />
         </div>
     );
 };
