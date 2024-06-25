@@ -5,7 +5,7 @@ import { Dialog, DialogHeader, Tabs, TabsHeader, TabsBody, Tab, TabPanel, Input,
 import { POST_API, PROJECT_ID } from "../Utils/Constant";
 
 export default function CreatePost() {
-  const [show,setShow]= useState(false);
+  const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [images, setImage] = useState(null);
@@ -27,7 +27,7 @@ export default function CreatePost() {
     formData.append("content", content);
 
     try {
-      const response = await axios.post(POST_API,formData,
+      const response = await axios.post(POST_API, formData,
         {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -83,22 +83,11 @@ export default function CreatePost() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
-
-          <label htmlFor="post-image" className="font-semibold">
-            Upload Image:
-          </label>
-          <input
-            id="post-image"
-            type="file"
-            className="border border-gray-300 p-2 mt-2"
-            onChange={handleImageChange}
-          />
-
           <div className="w-full flex justify-between items-center px-6 py-4">
             <button
               type="button"
               onClick={closeModal}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300"
+              className="bg-red-900 hover:bg-blue-700 text-white text-sm sm:text-base font-medium py-2 px-4 rounded-full transition duration-300"
             >
               Close
             </button>
@@ -106,7 +95,7 @@ export default function CreatePost() {
               type="submit"
               className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-medium py-2 px-4 rounded-full transition duration-300"
             >
-              Add Post
+              Add Question
             </button>
           </div>
         </form>
@@ -138,19 +127,22 @@ export default function CreatePost() {
               onChange={(e) => setContent(e.target.value)}
             />
           </div>
-          <div className="relative w-full min-w-[200px] h-10">
+          <div>
+            <label htmlFor="post-image" className="font-semibold">
+              Upload Image:
+            </label>
             <input
+              id="post-image"
               type="file"
-              className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 disabled:cursor-not-allowed transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent placeholder:opacity-0 focus:placeholder:opacity-100 text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+              className="border border-gray-300 p-2 mt-2"
               onChange={handleImageChange}
             />
           </div>
-          <button
-            type="submit"
-            className="align-middle select-none font-sans font-bold text-center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none bg-blue-500 capitalize rounded-full"
-          >
-            Post
-          </button>
+          <div className="w-full flex justify-center mt-5 ">
+            <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-medium py-2 px-4 rounded-full transition duration-300">
+              Post
+            </button>
+          </div>
         </form>
       ),
     },
